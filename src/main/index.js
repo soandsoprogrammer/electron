@@ -4,9 +4,10 @@ import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 import { createAppMenu } from '../menu/index.js'
 import { createTray } from '../menu/tray.js'
+let mainWindow = null
 function createWindow() {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
     show: false,
@@ -55,7 +56,7 @@ app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
   createAppMenu()
-  createTray()
+  createTray(mainWindow)
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
   // see https://github.com/alex8088/electron-toolkit/tree/master/packages/utils
@@ -83,8 +84,6 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
-
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

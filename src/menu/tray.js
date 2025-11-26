@@ -1,9 +1,9 @@
 import { Tray, Menu, nativeImage, BrowserWindow } from 'electron'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../resources/resized-image.png?asset'
 
 let tray = null
 
-export const createTray = () => {
+export const createTray = (mainWindow) => {
   if (tray) return tray
 
   const image = nativeImage.createFromPath(icon)
@@ -26,6 +26,20 @@ export const createTray = () => {
       click: () => {
         const win = BrowserWindow.getAllWindows()[0]
         if (win) win.hide()
+      }
+    },
+    {
+      label: '云平台',
+      click: () => {
+        const win = BrowserWindow.getAllWindows()[0]
+        if (win) win.loadURL('https://cloud.zhuiguang.com/admin/#/login')
+      }
+    },
+    {
+      label: '百度',
+      click: () => {
+        const win = BrowserWindow.getAllWindows()[0]
+        if (win) win.loadURL('https://www.baidu.com')
       }
     },
     { type: 'separator' },
