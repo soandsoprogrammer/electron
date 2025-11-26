@@ -1,7 +1,5 @@
-const { app, Menu } = require('electron')
-
-// 定义菜单模板
-const menuTemplate = [
+import { Menu } from 'electron'
+export const menuTemplate = [
   {
     label: '文件',
     submenu: [
@@ -31,10 +29,7 @@ const menuTemplate = [
   }
 ]
 
-app.whenReady().then(() => {
-  // 构建菜单并设置为应用菜单
+export const createAppMenu = () => {
   const menu = Menu.buildFromTemplate(menuTemplate)
   Menu.setApplicationMenu(menu)
-
-  // 创建窗口...
-})
+}
